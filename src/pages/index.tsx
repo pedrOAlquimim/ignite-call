@@ -1,7 +1,5 @@
-import { Heading, Text } from '@pedro-ignite-ds/react'
+import { Heading } from '@pedro-ignite-ds/react'
 
 export default function Home() {
-  return (
-    <Heading as='h1'>Hello World</Heading>
-  )
+  return <Heading as="h1">Hello World</Heading>
 }
