@@ -1,3 +1,4 @@
+import { api } from '../../lib/axios'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Button,
@@ -47,7 +48,14 @@ export default function Register() {
   }, [router.query?.username, setValue])
 
   async function handleRegisterForm(data: RegisterFormData) {
-    console.log(data)
+    try {
+      await api.post('/users', {
+        name: data.name,
+        username: data.username,
+      })
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   return (
