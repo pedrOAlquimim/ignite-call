@@ -1,6 +1,7 @@
 import { Button, Heading, MultiStep, Text } from '@pedro-ignite-ds/react'
 import { Container, Header, ConnectBox, ConnectItem } from './styles'
 import { ArrowRight } from 'phosphor-react'
+import { signIn } from 'next-auth/react'
 
 export default function ConnectCalendar() {
   // async function handleRegisterForm(data: RegisterFormData) {}
@@ -8,10 +9,10 @@ export default function ConnectCalendar() {
   return (
     <Container>
       <Header>
-        <Heading as="strong">Bem-vindo ao Ignite Call!</Heading>
+        <Heading as="strong">Conecte sua agenda!</Heading>
         <Text>
-          Precisamos de algumas informações para criar seu perfil! Ah, você pode
-          editar essas informações depois.
+          Conecte o seu calendário para verificar automaticamente as horas
+          ocupadas e os novos eventos à medida em que são agendados.
         </Text>
 
         <MultiStep size={4} currentStep={2} />
@@ -20,7 +21,7 @@ export default function ConnectCalendar() {
       <ConnectBox>
         <ConnectItem>
           <Text>Google Calendar</Text>
-          <Button variant="secondary">
+          <Button variant="secondary" onClick={() => signIn('google')}>
             Conectar
             <ArrowRight />
           </Button>
