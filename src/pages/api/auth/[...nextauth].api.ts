@@ -40,6 +40,13 @@ export function authOptions(
 
         return true
       },
+
+      async session({ session, user }) {
+        return {
+          ...session,
+          user,
+        }
+      },
     },
   }
 }
