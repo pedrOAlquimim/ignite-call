@@ -4,6 +4,12 @@ import { CalendarBlank, Clock } from 'phosphor-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import dayjs from 'dayjs'
+
+interface ConfirmStepProps {
+  schedulingDate: Date
+  onCancelCorfirmation: () => void
+}
 
 const confirmStepSchema = z.object({
   name: z
@@ -15,7 +21,10 @@ const confirmStepSchema = z.object({
 
 type confirmStepData = z.infer<typeof confirmStepSchema>
 
-export function ConfirmStep() {
+export function ConfirmStep({
+  schedulingDate,
+  onCancelCorfirmation,
+}: ConfirmStepProps) {
   const {
     register,
     handleSubmit,
@@ -24,6 +33,9 @@ export function ConfirmStep() {
     resolver: zodResolver(confirmStepSchema),
   })
 
+  const describedDate = dayjs(schedulingDate).format('DD[ de ]MMMM[ de ]YYYY')
+  const describedTime = dayjs(schedulingDate).format('HH:mm[h]')
+
   function handleConfirmScheduling(data: confirmStepData) {}
 
   return (
@@ -31,11 +43,11 @@ export function ConfirmStep() {
       <FormHeader>
         <Text>
           <CalendarBlank />
-          22 de Setembro de 2022
+          {describedDate}
         </Text>
         <Text>
           <Clock />
-          18:00h
+          {describedTime}
         </Text>
       </FormHeader>
 
@@ -61,7 +73,7 @@ export function ConfirmStep() {
       </label>
 
       <FormActions>
-        <Button type="button" variant="tertiary">
+        <Button type="button" variant="tertiary" onClick={onCancelCorfirmation}>
           Cancelar
         </Button>
         <Button type="submit" disabled={isSubmitting}>
