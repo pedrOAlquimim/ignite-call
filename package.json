@@ -23,6 +23,7 @@
     "googleapis": "^118.0.0",
     "next": "13.2.4",
     "next-auth": "^4.20.1",
+    "next-seo": "^6.0.0",
     "nookies": "^2.5.2",
     "phosphor-react": "^1.4.1",
     "react": "18.2.0",
